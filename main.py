@@ -1,9 +1,20 @@
+import names
+import time
+
 from selenium import webdriver
 from tempfile import mkdtemp
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.chrome.options import Options
 
 
 def handler(event=None, context=None):
+
     options = webdriver.ChromeOptions()
     service = webdriver.ChromeService("/opt/chromedriver")
 
@@ -23,5 +34,7 @@ def handler(event=None, context=None):
 
     chrome = webdriver.Chrome(options=options, service=service)
     chrome.get("https://example.com/")
+
+
 
     return chrome.find_element(by=By.XPATH, value="//html").text
